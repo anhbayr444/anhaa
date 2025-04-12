@@ -1,21 +1,44 @@
-export default function Header() {
-    return (
-        <div className="flex justify-between w-full mx-auto bg-gray-100 px-16 h-[72px] rounded-lg">
-      <p className="text-2xl font-bold flex items-center">
-        Bialovetskyi
-      </p>
-      <div className="flex  gap-2 items-center">
-        <p className="font-normal text-base">Home</p>
-        <p className="font-normal text-base">About</p>
-        <p className="font-normal text-base">Project</p>
-        <p className="font-normal text-base">Experience</p>
-        <p className="font-normal text-base">Contact</p>
+"use client"
+
+import Link from "next/link"
+import MobileMenu from "./mobile-menu"
+import { Button } from "./ui/button"
+
+export default function Header({onNavigate}) {
+  return (
+    <header className="border-b border-gray-100 sticky top-0 bg-white z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          <Link href="/" className="text-lg font-bold">
+            Bialovetskyi
+          </Link>
+          
+          <nav className="hidden md:flex space-x-8 cursor-pointer">
+            <div onClick={()=>onNavigate("home")} className="text-gray-900 hover:text-blue-500 transition-colors">
+              Home
+            </div>
+            <div onClick={()=>onNavigate("about")} className="text-gray-900 hover:text-blue-500 transition-colors">
+              About
+            </div>
+            <div onClick={()=>onNavigate("portfolio")} className="text-gray-900 hover:text-blue-500 transition-colors">
+              Portfolio
+            </div>
+            <div onClick={()=>onNavigate("price")} className="text-gray-900 hover:text-blue-500 transition-colors">
+              Price
+            </div>
+            <div onClick={()=>onNavigate("blog")} className="text-gray-900 hover:text-blue-500 transition-colors">
+              Blog
+            </div>
+          </nav>
+          
+          <div className="flex items-center space-x-4">
+            <Button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition-colors hidden md:block">
+              Let's Talk
+            </Button>
+            <MobileMenu />
+          </div>
+        </div>
       </div>
-      <div className="flex items-center">
-      <button className="bg-blue-600 rounded-sm flex py-2 px-6 justify-center items-center text-white h-[40px]">
-          button
-      </button>
-      </div>
-    </div>
-    )
+    </header>
+  )
 }
